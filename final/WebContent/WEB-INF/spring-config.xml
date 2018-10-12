@@ -12,6 +12,9 @@
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
 	<websocket:handlers>
 		<websocket:mapping handler="alertController" path="/alert.do"/>
+		<websocket:handshake-interceptors >
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
 	</websocket:handlers>
 
 
@@ -38,7 +41,7 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@www.mockingu.com:1521:xe" />
+			value="jdbc:oracle:thin:@13.209.21.47:1521:xe" />
 		<property name="username" value="dev" />
 		<property name="password" value="oracle" />
 	</bean>
