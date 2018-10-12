@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import app.model.EmplyoeeRepository;
+import app.model.EmployeeRepository;
 
 @Controller
 @RequestMapping("/admin/employee")
 public class EmployeeController {
 
 	@Autowired
-	EmplyoeeRepository employeeRepository;
+	EmployeeRepository employeeRepository;
 	
 	
 	@GetMapping("/add.do")

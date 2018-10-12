@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class EmplyoeeRepository {
+public class EmployeeRepository {
 
 	@Autowired
 	SqlSessionTemplate template;
@@ -20,6 +20,14 @@ public class EmplyoeeRepository {
 	
 	public List<Map> getAllPositions() {
 		return template.selectList("employee.getAllPositions");
+	}
+	
+	public int checkEmployee(Map data) {
+		return template.selectOne("employee.checkEmployee", data);
+	}
+	
+	public Map getEmployee(String id) {
+		return template.selectOne("employee.getEmployee", id);
 	}
 	
 	public String getNewEmployeeId() {
