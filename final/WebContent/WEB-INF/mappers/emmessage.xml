@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emmessage">
+	
+	<insert id="sendMessage" parameterType="java.util.HashMap">
+		insert into emmessage values(emmessage_seq.nextval, #{sender}, #{receiver}, #{content}, sysdate, null)
+	</insert>
+	
+	<select id="getMessageList" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select s.*, emmessage.* from (select t.*, position.pname from(
+		select employee.* , department.dname from employee join department on employee.did=department.did)
+		 t join position on t.pid = position.pid) s join emmessage on emmessage.receiver=s.id
+		  where receiver=#{id} order by no asc
+	</select>
+	<update id="readmessage" parameterType="java.lang.Integer">
+		update emmessage set chkdate=sysdate where no=#{no}
+	</update>
+	<select id="getMessage" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+		select * from emmessage where no=#{no}
+	</select>
+	<select id="realmessageinfo" parameterType="java.lang.String" resultType="java.util.HashMap">
+		     select * from(select * from emmessage where sender=#{sender} order by no desc) where rownum=1
+	</select>
+	<!-- <select id="getEmployee" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select t.*, position.pname from
+			(select employee.*, department.dname from employee join department on employee.did = department.did ) t 
+		join position on t.pid = position.pid where id=#{id }
+	</select> -->
+
+	
+	
+</mapper>
+
+
+
+
+
+

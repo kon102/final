@@ -25,7 +25,15 @@
 	
 	<select id="checkEmployee" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		select count(*) from employee where id=#{id } and pass=#{pass}
-	</select>	
+	</select>
+	
+	<update id="changePw" parameterType="java.util.HashMap">
+		update employee set pass=#{npass} where id=#{id} and pass=#{pass}
+	</update>	
+	
+	<select id="searhid" parameterType="java.lang.String" resultType="java.lang.String">
+		select ID from employee where id=#{id}
+	</select>
 	
 	
 </mapper>
